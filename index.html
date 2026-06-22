@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="500x500" href="rolo-pintura.png">
+
+    <title>Carlos Pintor | Pintura Residencial e Comercial de Alto Padrão</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- ScrollReveal para animações de rolagem -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        :root {
+            --bg: #fdfbf7;
+            --bg-secondary: #f5f0e6;
+            --card-dark: #ebe3d5;
+            --card-light: #ffffff;
+            --gold: #b39274;
+            --gold-light: #8c6f56;
+            --gold-dark: #6e533c;
+            --text-white: #2c2520;
+            --text-dark: #1c1815;
+            --text-muted: #6e655f;
+            --border: rgba(179, 146, 116, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-white);
+            background: linear-gradient(180deg, rgba(253, 251, 247, 0.9) 0%, rgba(245, 240, 230, 0.98) 100%), url('background.png');
+            background-attachment: fixed;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: min(1140px, 90%);
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+
+        /* --- HERO SECTION COM RECORTE E IMAGEM (background2 apenas aqui) --- */
+        .hero-outer {
+            position: relative;
+            background: linear-gradient(180deg, rgba(245, 240, 230, 0.5) 0%, rgba(235, 227, 213, 0.95) 100%), url('background2.png');
+            background-size: cover;
+            background-position: center;
+            padding-bottom: 100px;
+            clip-path: ellipse(140% 100% at 50% 0%);
+        }
+
+        /* Iluminação radial de fundo no topo */
+        .hero-outer::after {
+            content: "";
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(179, 146, 116, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 50px;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .hero-image-box {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-box img {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            object-fit: contain;
+            animation: floatStatue 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(110, 83, 60, 0.2));
+        }
+
+        .hero-text-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .main-logo-wrapper {
+            margin-bottom: 15px;
+        }
+
+        .main-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            color: var(--gold-light);
+            line-height: 1;
+            letter-spacing: -2px;
+            font-weight: 300;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold-dark);
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .hero-description i {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        /* --- BOTÕES --- */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #d9c5b2 0%, #b39274 100%);
+            color: #ffffff;
+            padding: 14px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(179, 146, 116, 0.25);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(179, 146, 116, 0.4);
+            background: linear-gradient(135deg, #b39274 0%, #d9c5b2 100%);
+        }
+
+        /* --- ÁREAS DE ATUAÇÃO --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header i {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .act-card {
+            background-color: rgba(235, 227, 213, 0.6);
+            border: 1px solid rgba(179, 146, 116, 0.2);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .act-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            background-color: rgba(235, 227, 213, 0.9);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .icon-circle i {
+            color: var(--gold-light);
+            font-size: 1.8rem;
+        }
+
+        .act-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .act-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .center-action {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* --- SEÇÃO SOBRE (ABOUT) --- */
+        .about-section {
+            background: radial-gradient(circle at right, rgba(235, 227, 213, 0.5) 0%, transparent 60%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            color: var(--gold-light);
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-img-box {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(110, 83, 60, 0.15);
+        }
+
+        .about-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(0.98);
+        }
+
+        /* --- DEPOIMENTOS --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 55px 25px; 
+            margin-top: 40px;
+        }
+
+        .testi-card {
+            background-color: var(--card-light);
+            color: var(--text-dark);
+            border-radius: 12px;
+            padding: 50px 30px 30px 30px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(179, 146, 116, 0.15);
+            border: 1px solid rgba(179, 146, 116, 0.1);
+        }
+
+        .avatar-circle {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background-color: #e6ebf0;
+            position: absolute;
+            top: -37px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid var(--bg);
+            overflow: hidden;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testi-card .quote-icon {
+            color: var(--gold);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .testi-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #5c544e;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testi-author {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: block;
+        }
+
+        /* --- FAQ & CONTATO --- */
+        .faq-contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .faq-wrapper .faq-item {
+            background-color: rgba(235, 227, 213, 0.4);
+            border-bottom: 1px solid rgba(179, 146, 116, 0.25);
+            margin-bottom: 10px;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            padding: 20px;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            text-align: left;
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .faq-trigger span {
+            color: var(--gold);
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+
+        .faq-item.active .faq-trigger span {
+            transform: rotate(45deg);
+        }
+
+        .side-contact-box {
+            background-color: transparent;
+            border-left: 1px solid rgba(179, 146, 116, 0.25);
+            padding-left: 40px;
+        }
+
+        .side-contact-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .side-contact-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text-white);
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .contact-link:hover {
+            opacity: 0.9;
+        }
+
+        .contact-link.wp { background-color: #aa8461; color: white; }
+        .contact-link.ml { background-color: #ebe3d5; border: 1px solid rgba(0,0,0,0.05); color: var(--text-dark); }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 0;
+        }
+
+        .footer-card {
+            background: linear-gradient(135deg, #ebe3d5 0%, #d9c5b2 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: var(--text-dark);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+            border: 1px solid rgba(179, 146, 116, 0.2);
+        }
+
+        .footer-info-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-info-left i {
+            font-size: 2.2rem;
+            color: var(--gold-dark);
+        }
+
+        .footer-info-left p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-dark);
+        }
+
+        .footer-channels {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .footer-channels i {
+            margin-right: 8px;
+            color: var(--gold-dark);
+        }
+
+        .footer-channels a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .btn-dark-footer {
+            background-color: #6e533c;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+            display: inline-block;
+            justify-self: end;
+        }
+
+        .btn-dark-footer:hover {
+            background-color: #543f2e;
+        }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes floatStatue {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .hero-grid, .grid-3, .testimonials-grid, .faq-contact-grid, .footer-card, .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-image-box {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            .hero-text-box {
+                align-items: center;
+                text-align: center;
+            }
+            .side-contact-box {
+                border-left: none;
+                padding-left: 0;
+                margin-top: 40px;
+            }
+            .btn-dark-footer {
+                justify-self: start;
+            }
+            .about-img-box {
+                order: -1;
+                max-width: 450px;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO SECTION -->
+    <div class="hero-outer">
+        <section class="container hero-grid">
+            <div class="hero-image-box">
+                <img src="rolo-pintura.png" alt="Serviços de Pintura Profissional">
+            </div>
+
+            <div class="hero-text-box">
+                <div class="main-logo-wrapper">
+                    <div class="main-logo">CP</div>
+                </div>
+                
+                <h1 class="hero-title">Carlos Pintor</h1>
+                <div class="hero-subtitle">Pintura e Acabamentos de Alto Padrão</div>
+                
+                <div class="hero-description">
+                    <i class="fa-regular fa-square-check"></i>
+                    <span>Precisão, limpeza e excelência na renovação do seu espaço.</span>
+                </div>
+                
+                <a href="#contato" class="btn-gold">
+                    <i class="fa-solid fa-calendar-days"></i> Solicitar Orçamento
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ÁREAS DE ATUAÇÃO -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <i class="fa-solid fa-paint-roller"></i>
+            </div>
+
+            <div class="grid-3">
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <h3>Residencial</h3>
+                    <p>Pintura interna e externa completa com proteção de mobília, preparação minuciosa de superfícies e acabamento fino impecável.</p>
+                </div>
+
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-brush"></i>
+                    </div>
+                    <h3>Efeitos Decorativos</h3>
+                    <p>Aplicação especializada de cimento queimado, textura projetada, marmorato e técnicas modernas para destacar o seu ambiente.</p>
+                </div>
+
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <h3>Comercial</h3>
+                    <p>Pinturas prediais e comerciais com cronogramas flexíveis para não interromper as atividades e o funcionamento da sua empresa.</p>
+                </div>
+            </div>
+
+            <div class="center-action">
+                <a href="#contato" class="btn-gold">
+                    <i class="fa-solid fa-calendar-days"></i> Agendar Visita Técnica
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE O PROFISSIONAL -->
+    <section class="about-section">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Carlos Pintor</h2>
+                <p>Mais de 10 anos de experiência transformando ambientes comerciais e residenciais com técnicas avançadas de pintura e acabamentos finos.</p>
+                <p>Nosso foco vai além da cor: entregamos uma preparação rigorosa de paredes e tetos, corrigindo imperfeições para garantir a máxima durabilidade do material. Trabalhamos em parceria com as melhores marcas de tintas do mercado nacional.</p>
+                <p>O grande diferencial do nosso trabalho está na organização, limpeza absoluta durante a execução e cumprimento estrito dos prazos combinados.</p>
+            </div>
+            <div class="about-img-box">
+                <img src="foto-do-pintor.png" alt="Carlos Pintor em Atividade">
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Clientes Satisfeitos</h2>
+                <i class="fa-solid fa-quote-right"></i>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Card 1 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60" alt="Ana Costa">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"O Carlos fez a pintura interna da minha casa e o acabamento ficou maravilhoso. Tudo muito limpo e organizado no final do dia."</p>
+                    <span class="testi-author">— Ana Costa, Proprietária</span>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Ricardo Lima">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Contratei o efeito de cimento queimado para a minha sala e o resultado superou as expectativas. Técnica perfeita!"</p>
+                    <span class="testi-author">— Ricardo Lima, Arquiteto</span>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=60" alt="Fernanda Soares">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Profissional muito pontual e educado. Pintou nossa clínica médica sem fazer sujeira e dentro do prazo estipulado."</p>
+                    <span class="testi-author">— Fernanda Soares, Administradora</span>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60" alt="Carlos Albuquerque">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Excelente consultoria sobre as cores e marcas mais adequadas para a fachada do meu comércio. Trabalho de primeira classe."</p>
+                    <span class="testi-author">— Carlos Albuquerque, Comerciante</span>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&auto=format&fit=crop&q=60" alt="Mariana Figueiredo">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Extremamente detalhista com rodapés e cantos. Foi a primeira vez que não tive dor de cabeça com reformas."</p>
+                    <span class="testi-author">— Mariana Figueiredo, Designer de Interiores</span>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=60" alt="João Henrique">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Cumpre o que promete no orçamento, sem surpresas ou taxas escondidas. Super recomendo a toda a equipe."</p>
+                    <span class="testi-author">— João Henrique, Síndico</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERGUNTAS FREQUENTES & CONTATO -->
+    <section id="contato">
+        <div class="container faq-contact-grid">
+            
+            <div class="faq-wrapper">
+                <h2 style="font-size: 2.2rem; color: var(--gold-light); margin-bottom: 25px;">Dúvidas Frequentes</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-trigger">Como funciona o orçamento e a visita técnica? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Realizamos uma visita no local para avaliar o estado das superfícies, metragem e necessidades específicas, enviando uma proposta detalhada logo em seguida.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Os materiais de pintura já estão inclusos no preço? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Podemos trabalhar das duas formas: fornecendo apenas a mão de obra qualificada ou incluindo todo o material de preparação e as tintas no orçamento global.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Como é feita a proteção dos móveis e pisos? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Cobrimos 100% dos pisos, janelas e mobílias remanescentes com lonas plásticas grossas, fitas especiais e papel bolha antes de iniciar qualquer lixamento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Qual o prazo médio para a pintura de um imóvel? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Depende do tamanho e das correções necessárias nas paredes. Um apartamento padrão costuma levar entre 4 a 7 dias úteis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-contact-box">
+                <h3>Quer renovar seu espaço?</h3>
+                <p>Entre em contato para agendar seu orçamento exclusivo.</p>
+                
+                <a href="#" class="contact-link wp">
+                    <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento via WhatsApp
+                </a>
+                <a href="#" class="contact-link ml">
+                    <i class="fa-regular fa-envelope"></i> Enviar Mensagem por E-mail
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-card">
+                <div class="footer-info-left">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <p>Agende sua avaliação e transforme seus ambientes com quem entende.<br><span style="font-size: 0.85rem; font-weight: normal; opacity: 0.8;">Atendimento residencial, comercial e corporativo.</span></p>
+                </div>
+                
+                <div class="footer-channels">
+                    <div><i class="fa-solid fa-phone"></i> (31) 98765-4321</div>
+                    <div><i class="fa-solid fa-envelope"></i> <a href="mailto:contato@carlospintor.com.br">contato@carlospintor.com.br</a></div>
+                    <div><i class="fa-solid fa-globe"></i> <a href="http://www.carlospintor.com.br" target="_blank">www.carlospintor.com.br</a></div>
+                </div>
+                
+                <a href="#contato" class="btn-dark-footer">
+                    <i class="fa-solid fa-calendar-days"></i> Solicitar Orçamento
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- TRAVAS DE SEGURANÇA (Anti-Cópia / Anti-F12 / Anti-Inspecionar) ---
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'F12') {
+                event.preventDefault();
+                return false;
+            }
+            if (event.ctrlKey && (event.shiftKey && ['I', 'C', 'J'].includes(event.key.toUpperCase()) || event.key.toUpperCase() === 'U')) {
+                event.preventDefault();
+                return false;
+            }
+            if (event.ctrlKey && ['C', 'S'].includes(event.key.toUpperCase())) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        document.addEventListener('selectstart', event => event.preventDefault());
+
+        // --- LÓGICA DO SITE ---
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        const sr = ScrollReveal({
+            origin: 'bottom',
+            distance: '40px',
+            duration: 1000,
+            delay: 200,
+            reset: false
+        });
+
+        sr.reveal('.hero-image-box', { origin: 'left', distance: '60px' });
+        sr.reveal('.main-logo-wrapper', { delay: 100 });
+        sr.reveal('.hero-title', { delay: 300 });
+        sr.reveal('.hero-subtitle', { delay: 450 });
+        sr.reveal('.hero-description', { delay: 600 });
+        sr.reveal('.hero-text-box .btn-gold', { delay: 750 });
+
+        sr.reveal('.section-header', { distance: '20px' });
+        sr.reveal('.act-card', { interval: 200 });
+        sr.reveal('.center-action', { delay: 400 });
+
+        sr.reveal('.about-text p', { interval: 150 });
+        sr.reveal('.about-img-box', { origin: 'right', distance: '50px', delay: 300 });
+
+        sr.reveal('.testi-card', { interval: 150, distance: '50px' });
+
+        sr.reveal('.faq-item', { interval: 150 });
+        sr.reveal('.side-contact-box', { origin: 'right', distance: '40px', delay: 200 });
+
+        sr.reveal('.footer-card', { distance: '30px' });
+    </script>
+</body>
+</html>
