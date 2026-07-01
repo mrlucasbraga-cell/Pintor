@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="500x500" href="rolo-pintura.png">
-
     <title>Carlos Pintor | Pintura Residencial e Comercial de Alto Padrão</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,59 +14,116 @@
 
     <style>
         :root {
-            --bg: #f4f7f6;
-            --bg-secondary: #e8efee;
-            --card-dark: #d5e0de;
-            --card-light: #ffffff;
-            --gold: #4a7c78;
-            --gold-light: #6a9b96;
-            --gold-dark: #2d5a57;
-            --text-white: #252c2b;
-            --text-dark: #162625;
-            --text-muted: #576e6b;
-            --border: rgba(74, 124, 120, 0.2);
+            --bg: #fdfbf7;
+            --gold: #b39274;
+            --gold-light: #8c6f56;
+            --gold-dark: #6e533c;
+            --text-white: #2c2520;
+            --text-dark: #1c1815;
+            --text-muted: #6e655f;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-white); background: var(--bg); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-white); background: #fdfbf7; }
+        .container { width: 92%; max-width: 1140px; margin: auto; }
+        section { padding: 60px 0; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
 
-        .container { width: min(1140px, 92%); margin: auto; position: relative; }
-        section { padding: 60px 0; } /* Ajustado para mobile */
-
-        /* --- GRID E RESPONSIVIDADE OTIMIZADA --- */
-        .grid-3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-
-        /* Mobile extremo (telas muito pequenas) - mantém 1 coluna se necessário */
-        @media (max-width: 480px) {
-            .grid-3, .testimonials-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.5rem !important; }
+        /* Grade Dinâmica */
+        .grid-dynamic {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 600px) {
+            .grid-dynamic { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* Hero */
-        .hero-outer { padding: 40px 0 60px; }
-        .hero-grid { display: grid; grid-template-columns: 1fr; text-align: center; gap: 30px; }
-        .hero-title { font-size: 3rem; }
-        .main-logo { font-size: 3.5rem; }
+        .hero-outer { padding: 40px 0; text-align: center; }
+        .hero-title { font-size: 2.8rem; line-height: 1; }
+        .hero-image-box img { width: 80%; max-width: 300px; margin-bottom: 20px; }
+
+        .act-card, .testi-card { background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #eee; }
         
-        .act-card { padding: 25px 15px; }
-        .testi-card { padding: 40px 15px 20px; }
+        .btn-gold {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
 
-        /* Ajustes Gerais */
-        h1, h2 { font-family: 'Cormorant Garamond', serif; }
-        .btn-gold { padding: 12px 25px; display: inline-block; background: var(--gold); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; }
-
-        /* Manter demais estilos existentes, apenas ajustando o que foi modificado acima */
-        .hero-image-box img { max-width: 250px; }
-        .about-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-        .faq-contact-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
-        .footer-card { padding: 30px; text-align: center; display: flex; flex-direction: column; gap: 20px; }
+        .faq-contact-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        
+        .footer-card {
+            background: #ebe3d5;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <!-- (O restante do seu HTML permanece idêntico, apenas mantendo a estrutura original) -->
-    <!-- ... [Restante do código original mantido] ... -->
+
+    <div class="hero-outer">
+        <div class="container">
+            <div class="hero-image-box"><img src="rolo-pintura.png" alt="Pintura"></div>
+            <h1 class="hero-title">Carlos Pintor</h1>
+            <p>Pintura e Acabamentos de Alto Padrão</p>
+            <br>
+            <a href="#contato" class="btn-gold">Solicitar Orçamento</a>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <h2 style="text-align:center; font-size: 2rem; margin-bottom:30px;">Nossos Serviços</h2>
+            <div class="grid-dynamic grid-3">
+                <div class="act-card"><h3>Residencial</h3><p>Pintura interna e externa com proteção de mobília e acabamento fino.</p></div>
+                <div class="act-card"><h3>Decorativos</h3><p>Cimento queimado, marmorato e técnicas modernas.</p></div>
+                <div class="act-card"><h3>Comercial</h3><p>Projetos prediais com cronograma flexível.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:30px;">Depoimentos</h2>
+            <div class="grid-dynamic">
+                <div class="testi-card"><p>"Serviço impecável e limpo."</p><strong>— Ana Costa</strong></div>
+                <div class="testi-card"><p>"Superou as expectativas."</p><strong>— Ricardo Lima</strong></div>
+                <div class="testi-card"><p>"Profissional nota 10."</p><strong>— Fernanda S.</strong></div>
+                <div class="testi-card"><p>"Rapidez e qualidade."</p><strong>— João H.</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="container faq-contact-grid">
+            <div class="side-contact-box">
+                <h2>Quer renovar seu espaço?</h2>
+                <br>
+                <a href="#" class="btn-gold">WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container">
+        <div class="footer-card">
+            <p>(31) 98765-4321</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-trigger').forEach(t => t.onclick = () => t.parentElement.classList.toggle('active'));
+        ScrollReveal().reveal('.act-card, .testi-card', { interval: 100 });
+    </script>
 </body>
 </html>
